@@ -48,9 +48,9 @@ class EntrenamientoFragment : Fragment(){
 
         boton.setOnClickListener {
             try {
-                flecha1Valor =  if(flecha1.text.toString().isNullOrBlank() || flecha1.text.toString().toInt() > 10)throw IllegalArgumentException() else flecha1.text.toString().trim().toInt()
-                flecha2Valor =  if(flecha2.text.toString().isNullOrBlank() || flecha2.text.toString().toInt() > 10)throw IllegalArgumentException() else flecha2.text.toString().trim().toInt()
-                flecha3Valor =  if(flecha3.text.toString().isNullOrBlank() || flecha3.text.toString().toInt() > 10)throw IllegalArgumentException() else flecha3.text.toString().trim().toInt()
+                flecha1Valor =  if(validarFlecha(flecha1.text.toString()))throw IllegalArgumentException() else flecha1.text.toString().trim().toInt()
+                flecha2Valor =  if(validarFlecha(flecha2.text.toString()))throw IllegalArgumentException() else flecha2.text.toString().trim().toInt()
+                flecha3Valor =  if(validarFlecha(flecha3.text.toString()))throw IllegalArgumentException() else flecha3.text.toString().trim().toInt()
 
                 resultadoValor = evm.sumaFlechas(flecha1Valor,flecha2Valor,flecha3Valor)
                 total += resultadoValor.toDouble()
@@ -83,4 +83,10 @@ class EntrenamientoFragment : Fragment(){
         }
     }
 
+    fun validarFlecha(flecha : String):Boolean {
+        if (flecha.isNullOrBlank() || flecha.toInt() > 10){
+            return true
+        }
+        return false
+    }
 }
